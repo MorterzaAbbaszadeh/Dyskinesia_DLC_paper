@@ -32,7 +32,7 @@ df_ready=iter.get_sns(file, groups, funcs)
 
 
 #%%
-
+     
 
 k_df=pd.DataFrame(df_ready, columns=[i.__name__ for i in funcs]+['time','treatment','id']).dropna()
 k_df['ttreatment'] = k_df['treatment'].replace(['SKF'],'D1Ag')
