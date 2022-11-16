@@ -11,7 +11,7 @@ class visual_config():
         color_list=pal.as_hex()
 
         self.treatment_colors={
-                                'LD-3':color_list[0],
+                                'LD-3mg':color_list[0],
                                 'D1Ag':color_list[1],
                                 'D2Ag':color_list[2],
                                 'D1Ant':color_list[3],
@@ -25,20 +25,20 @@ class visual_config():
 
         #fonts
         self.label_font = {  'weight' : 'normal',
-                                'size'   : 12           }
-
-        self.title_font = {     'weight' : 'bold',
                                 'size'   : 14           }
 
+        self.title_font = {     'weight' : 'bold',
+                                'size'   : 16           }
+
         self.tick_font = {     'weight' : 'normal',
-                                'size'   : 9            }
+                                'size'   : 10            }
 
 
         self.legend={
-                                'fontdict':self.tick_font,
+                                'fontsize':10,
                                 'title':None,
                                 'fancybox':True, 
-                                'edgecolor':None, 
+                                'edgecolor':False, 
                                 'frameon':False
                                                          }
                                 
@@ -47,22 +47,24 @@ class visual_config():
 
 
 
-    def kinematic_box(self, ax, xlabel, ylabel, fonting, legend=False):
+    def kinematic_box(self, ax, xlabel, ylabel, legend=False):
         
 
-        with plt.rc('font', **fonting):
-            ax.set_xlim(-0.5, 8.5)
-            
-            ax.set_xlabel(xlabel, fontsize=fonting.ax_size)
-            ax.set_ylabel(ylabel, fontsize=fonting.ax_size)
+        ax.set_xlim(-0.5, 8.5)
+        
+        ax.set_xlabel(xlabel, fontdict=self.label_font)
+        ax.set_ylabel(ylabel, fontdict=self.label_font)
 
 
-            sns.despine(ax=ax)
-            
-            if isinstance(legend, dict):
-                plt.legend(**legend)
-            else:
-                ax.legend([],[], frameon=False)
+        sns.despine(ax=ax)
+        
+        if isinstance(legend, dict):
+            plt.legend(**legend)
+        else:
+            ax.legend([],[], frameon=False, fontsize=self.tick_font['size'])
+
+         #make this local
+
             
         return ax
 
