@@ -38,7 +38,7 @@ class visual_config():
                                 'fontsize':10,
                                 'title':None,
                                 'fancybox':True, 
-                                'edgecolor':False, 
+                                'edgecolor':None, 
                                 'frameon':False
                                                          }
                                 
