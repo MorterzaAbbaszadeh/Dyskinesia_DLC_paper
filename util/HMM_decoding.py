@@ -27,7 +27,7 @@ def decode(dct, remodel, ky, kin, t_point):
     
     labels=remodel.predict(features)
 
-    return len(labels[labels==0])/len(labels)
+    return len(labels[labels==1])/len(labels)
 
 
 
