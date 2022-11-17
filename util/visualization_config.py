@@ -68,3 +68,23 @@ class visual_config():
             
         return ax
 
+    def hmm_plots(self, ax, xlabel, ylabel, legend=False):
+        
+
+        ax.set_xlim(-0.5, 8.5)
+        
+        ax.set_xlabel(xlabel, fontdict=self.label_font)
+        ax.set_ylabel(ylabel, fontdict=self.label_font)
+
+
+        sns.despine(ax=ax)
+        
+        if isinstance(legend, dict):
+            plt.legend(**legend)
+        else:
+            ax.legend([],[], frameon=False, fontsize=self.tick_font['size'])
+
+         #make this local
+
+            
+        return ax
