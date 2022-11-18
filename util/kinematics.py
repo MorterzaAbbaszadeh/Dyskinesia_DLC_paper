@@ -127,7 +127,7 @@ class dlc_kinematics:
         thet_head=np.arccos(abs(dotp/(si_u*si_v)))*57.32   #(abs(dotp/(si_u*si_v)))*57.32 
         sm_head=np.pad(thet_head, 50, 'edge')                #pad the signal by its edge
            
-        return 90-sgn.savgol_filter(sm_head, 45, 4)[50:-50]
+        return sgn.savgol_filter(sm_head, 45, 4)[50:-50]
 
 
 
@@ -163,6 +163,7 @@ class dlc_kinematics:
     
 
     def npy_ar(self, dct:'dct[trace][t_p]'):
+        
         
         x1=(dct[self.body_map['x_rhead']]+dct[self.body_map['x_lhead']])/2
         y1=(dct[self.body_map['y_rhead']]+dct[self.body_map['y_lhead']])/2
@@ -251,7 +252,7 @@ class dlc_kinematics:
 
         t_point=str(t_point)
         ar=self.npy_ar(dct[ky]['traces'][t_point])/dct[ky]['ar0']
-        head_ang= self.npy_thet_head(dct[ky]['traces'][t_point])
+        head_ang= 90-self.npy_thet_head(dct[ky]['traces'][t_point])
         rot_speed=self.npy_rot_speed(dct[ky]['traces'][t_point])
         trans=self.npy_translation(dct[ky]['traces'][t_point])
         

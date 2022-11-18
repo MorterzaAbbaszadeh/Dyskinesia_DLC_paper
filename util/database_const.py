@@ -52,10 +52,10 @@ def const_dict(root, parts):
             dct['id']=fname[3:5]
 
             if fname[5:7]=='00':
-                dct['ar0']=np.mean(get_ar(case))
+                dct['ar0']=np.quantile(get_ar(case),0.95)
                 time='10'
             elif fname[5:7]=='05':
-                dct['ar0']=np.mean(get_ar(case))
+                dct['ar0']=np.quantile(get_ar(case),0.95)
                 time='10'
             elif fname[5:7]=='11':
                 time='100'
