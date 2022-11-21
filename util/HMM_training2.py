@@ -34,7 +34,7 @@ file='C:\dlc_projects\Analysis\git_repo\data\d_base.npy'
 #core functions
 def get_train_features(dct, t_point, kin, dim=3):
     features=np.empty((0,dim))
-    print(features)
+    
 
     for ky in list(dct.keys()):
         features=np.vstack((features,kin.get_3Dembd_train(dct,  ky, kin, t_point)))

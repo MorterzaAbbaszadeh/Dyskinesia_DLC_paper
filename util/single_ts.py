@@ -74,8 +74,72 @@ class dlc_ts:
 
         return thet_head, ar, rot_speed, translate
     
+    def pca_12D_srs(self, dct, ky:'the animal id', t_p:'the time point') -> 'thet_head, ar, rot_speed, translate':
+
+        
+
+        dlc_dct=dct[ky]['traces'][str(t_p)]     #get the x,y data set
+
+        x1=dlc_dct[self.body_map['x_tail']]
+        y1=dlc_dct[self.body_map['y_tail']]
+        x4=kinematics.smooth_diff(x1)
+        y4=kinematics.smooth_diff(y1)
 
 
+
+        x2=dlc_dct[self.body_map['x_rhead']]
+        y2=dlc_dct[self.body_map['y_rhead']]
+        x5=kinematics.smooth_diff(x2)
+        y5=kinematics.smooth_diff(y2)
+
+
+        x3=dlc_dct[self.body_map['x_lhead']]
+        y3=dlc_dct[self.body_map['y_lhead']]
+        x6=kinematics.smooth_diff(x2)
+        y6=kinematics.smooth_diff(y2)
+
+        array=np.column_stack((x1,y1,
+                              x2,y2,
+                              x3,y3,
+                              x4,y4,
+                              x5,y5, 
+                              x6,y6 ) )
+
+
+        return array
+
+
+
+
+
+    def get_centroid(self, dct,ID_n:'the animal idx', t_p:'the time point') -> 'thet_head, ar, rot_speed, translate':
+
+        ky=list(dct.keys())[ID_n]
+
+        dlc_dct=dct[ky]['traces'][str(t_p)]     #get the x,y data set
+
+        x1=dlc_dct[self.body_map['x_tail']]
+        y1=dlc_dct[self.body_map['y_tail']]
+
+
+
+        x2=dlc_dct[self.body_map['x_rhead']]
+        y2=dlc_dct[self.body_map['y_rhead']]
+
+
+
+        x3=dlc_dct[self.body_map['x_lhead']]
+        y3=dlc_dct[self.body_map['y_lhead']]
+
+        x_m_head=(x2+x3)/2
+        y_m_head=(y2+y3)/2
+
+        x_cent=(x_m_head+x1)/2
+        y_cent=(y_m_head+y1)/2
+
+
+
+        return x_cent, y_cent
 
 if __name__=='__main__':
     
