@@ -21,9 +21,11 @@ kin=dlc_kinematics()
 
 
 
-def decode(dct, remodel, ky, kin, t_point):
+def decode(dct, model, ky, kin, t_point):
 
- 
+    features=kin.get_3Dembd_train(dct, ky, kin, t_point)
+    labels=model.predict(features)
+
 
     return len(labels[labels==1])/len(labels)
 

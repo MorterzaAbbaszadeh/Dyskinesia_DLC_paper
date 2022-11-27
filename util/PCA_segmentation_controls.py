@@ -41,7 +41,7 @@ def nl_hmm_scores(dct,t_point, range_comps, kin):
         
 
 
-def pca_hmm_scores(dct,t_point, range_comps, ts, dim):
+def pca_hmm_scores(dct,t_point, range_comps, ts, dim=12):
 
 
     score=[]

@@ -9,8 +9,8 @@ class visual_config():
     def __init__(self):
         
         #colors
-        pal=sns.color_palette("tab10")
-        self.treatment_color_list=pal.as_hex()
+        self.tretament_pal=sns.color_palette("tab10")
+        self.treatment_color_list=self.tretament_pal.as_hex()
 
         self.treatment_colors={
                                 'LD-3mg':self.treatment_color_list[0],
@@ -18,7 +18,7 @@ class visual_config():
                                 'D2Ag':self.treatment_color_list[2],
                                 'D1Ant':self.treatment_color_list[3],
                                 'D2Ant':self.treatment_color_list[4],
-                                'D2KO':self.treatment_color_list[5]    }
+                                'D2KO':self.treatment_color_list[5]   }
 
         self.gradient_colors=sns.color_palette("RdPu", 10)
 
@@ -71,6 +71,7 @@ class visual_config():
 
         sns.despine(ax=ax)
         
+        
         if isinstance(legend, dict):
             plt.legend(**legend)
         else:
@@ -81,10 +82,10 @@ class visual_config():
             
         return ax
 
-    def hmm_plots(self, ax, xlabel, ylabel, legend=False):
+    def hmm_plots(self, ax, xlabel, ylabel, xlim_right=8.5, legend=False):
         
 
-        ax.set_xlim(-0.5, 8.5)
+        ax.set_xlim(-0.5, xlim_right)
         
         ax.set_xlabel(xlabel, fontdict=self.label_font)
         ax.set_ylabel(ylabel, fontdict=self.label_font)
@@ -169,6 +170,7 @@ class visual_config():
        
         return axs
     
+
     def sns_plots(self, ax, xlabel, ylabel, legend=False):
     
         
@@ -208,8 +210,8 @@ class visual_config():
         label_loc=[-0.08, 0.5]
 
         ax[0].plot(time, head_ang, linewidth=0.5)
-        ax[0].scatter(time[labels==0], head_ang[labels==0], color=self.compare_colors_sr[0])
-        ax[0].scatter(time[labels==1], head_ang[labels==1], color=self.compare_colors_sr[1])
+        ax[0].scatter(time[labels==0], head_ang[labels==0], color=self.compare_colors_sr[0], s=0.9)
+        ax[0].scatter(time[labels==1], head_ang[labels==1], color=self.compare_colors_sr[1], s=0.9)
         ax[0].set_ylabel(r'$\phi $', fontdict=self.label_font)
         ax[0].yaxis.set_label_coords(label_loc[0], label_loc[1])
         ax[0].set_xlim(strt, fini)
@@ -219,8 +221,8 @@ class visual_config():
 
 
         ax[1].plot(time, ar, linewidth=0.5)
-        ax[1].scatter(time[labels==0], ar[labels==0],color=self.compare_colors_sr[0])
-        ax[1].scatter(time[labels==1], ar[labels==1],color=self.compare_colors_sr[1])
+        ax[1].scatter(time[labels==0], ar[labels==0],color=self.compare_colors_sr[0], s=0.9)
+        ax[1].scatter(time[labels==1], ar[labels==1],color=self.compare_colors_sr[1], s=0.9)
         ax[1].set_ylabel(r'R', fontdict=self.label_font)
         ax[1].yaxis.set_label_coords(label_loc[0], label_loc[1])
         ax[1].set_xlim(strt, fini)
@@ -230,8 +232,8 @@ class visual_config():
 
 
         ax[2].plot(time, rot_speed, linewidth=0.5)
-        ax[2].scatter(time[labels==0], rot_speed[labels==0], color=self.compare_colors_sr[0])
-        ax[2].scatter(time[labels==1], rot_speed[labels==1], color=self.compare_colors_sr[1])
+        ax[2].scatter(time[labels==0], rot_speed[labels==0], color=self.compare_colors_sr[0], s=0.9)
+        ax[2].scatter(time[labels==1], rot_speed[labels==1], color=self.compare_colors_sr[1], s=0.9)
         ax[2].set_ylabel(r'd$\theta$/dt', fontdict=self.label_font)
         ax[2].yaxis.set_label_coords(label_loc[0], label_loc[1])
         ax[2].set_xlim(strt, fini)
